@@ -10,6 +10,7 @@ import Foundation
 public enum EndpointVersion: String {
   case none = ""
   case ver1, ver2
+  case ver2x = "2.5"
 }
 
 /// The type of HTTP method to use in the request.

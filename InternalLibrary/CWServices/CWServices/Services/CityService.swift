@@ -6,39 +6,28 @@
 //
 
 import Foundation
+import CWUtilities
 
 enum CityService {
   case city(name: String)
 }
 
-// extension CityService: EndPointType {
-//  var baseURL: String {
-//    <#code#>
-//  }
-//  
-//  var path: String {
-//    <#code#>
-//  }
-//  
-//  var httpMethod: HTTPMethod {
-//    <#code#>
-//  }
-//  
-//  var task: HTTPTask {
-//    <#code#>
-//  }
-//  
-//  var headers: HTTPHeaders? {
-//    <#code#>
-//  }
-//  
-//  var version: EndpointVersion {
-//    <#code#>
-//  }
-//  
-//  var parameters: [String : Any]? {
-//    <#code#>
-//  }
-//  
-//  
-// }
+extension CityService: EndPointType {
+  var baseURL: String { AppEnvironment.configuration.baseURL }
+  var path: String { "weather" }
+  var httpMethod: HTTPMethod { .get }
+  var version: EndpointVersion { .ver2x }
+
+  var task: HTTPTask {
+    switch self {
+    case let .city(name):
+      return .requestParameters(bodyEncoding: .urlEncoding, urlParameters: [
+        "q": name,
+        "appid": AppEnvironment.configuration.apiKey
+      ])
+    }
+  }
+
+  var headers: HTTPHeaders? { nil }
+  var parameters: [String: Any]? { nil }
+}

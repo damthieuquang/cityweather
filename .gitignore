@@ -74,3 +74,5 @@ DerivedData/
 # Xcode workspace files
 *.xcworkspace/contents.xcworkspacedata
 *.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+CityWeather/.DS_Store
+.DS_Store

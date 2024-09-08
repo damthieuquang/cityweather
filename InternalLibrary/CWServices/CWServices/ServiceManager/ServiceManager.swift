@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CWModels
 
 enum ServiceResponse: String {
   case success
@@ -24,39 +25,40 @@ enum Result<String> {
 
 public class ServiceManager {
 //  static let environment: NetworkEnvironment = .staging
-  static let shared = ServiceManager()
+  public static let shared = ServiceManager()
 
   public init() {}
 }
 
-extension ServiceManager {
-//  func getAllCountries(completion: @escaping (_ countries: [Country]?, _ error: String?) -> Void) {
-//    let router = Router<CountriesEndpoint>()
-//    router.request(.all) { data, response, error in
-//      if error != nil {
-//        completion(nil, "Please check your network connection.")
-//      }
-//
-//      if let response = response as? HTTPURLResponse {
-//        let result = self.handleNetworkResponse(response)
-//        switch result {
-//        case .success:
-//          guard let responseData = data else {
-//            completion(nil, NetworkResponse.noData.rawValue)
-//            return
-//          }
-//          do {
-//            let countries = try JSONDecoder().decode([Country].self, from: responseData)
-//            completion(countries, nil)
-//          } catch {
-//            completion(nil, NetworkResponse.unableToDecode.rawValue)
-//          }
-//        case .failure(let networkFailureError):
-//          completion(nil, networkFailureError)
-//        }
-//      }
-//    }
-//  }
+public extension ServiceManager {
+  func getCityByName(cityName: String,
+                     completion: @escaping (_ city: City?, _ error: String?) -> Void) {
+    let router = Router<CityService>()
+    router.request(.city(name: cityName)) { data, response, error in
+      if error != nil {
+        completion(nil, "Please check your network connection.")
+      }
+
+      if let response = response as? HTTPURLResponse {
+        let result = self.handleNetworkResponse(response)
+        switch result {
+        case .success:
+          guard let responseData = data else {
+            completion(nil, ServiceResponse.noData.rawValue)
+            return
+          }
+          do {
+            let city = try JSONDecoder().decode(City.self, from: responseData)
+            completion(city, nil)
+          } catch {
+            completion(nil, ServiceResponse.unableToDecode.rawValue)
+          }
+        case .failure(let networkFailureError):
+          completion(nil, networkFailureError)
+        }
+      }
+    }
+  }
 }
 
 private extension ServiceManager {

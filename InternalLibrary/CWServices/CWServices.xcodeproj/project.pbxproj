@@ -11,6 +11,7 @@
 		121B24142C8CB6DA00DED75E /* CWServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 121B24092C8CB6DA00DED75E /* CWServices.framework */; };
 		121B24192C8CB6DA00DED75E /* CWServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121B24182C8CB6DA00DED75E /* CWServicesTests.swift */; };
 		121B241A2C8CB6DA00DED75E /* CWServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 121B240C2C8CB6DA00DED75E /* CWServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		12793EA22C8E1A1E00747EF4 /* CWUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12793EA12C8E1A1E00747EF4 /* CWUtilities.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		12E46AB02C8D8A28003B771D /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46AAF2C8D8A28003B771D /* JSONParameterEncoder.swift */; };
 		12E46AB22C8D8A35003B771D /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46AB12C8D8A35003B771D /* ParameterEncoding.swift */; };
 		12E46AB42C8D8A3E003B771D /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46AB32C8D8A3E003B771D /* URLParameterEncoder.swift */; };
@@ -38,6 +39,9 @@
 		121B240D2C8CB6DA00DED75E /* CWServices.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CWServices.docc; sourceTree = "<group>"; };
 		121B24132C8CB6DA00DED75E /* CWServicesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CWServicesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		121B24182C8CB6DA00DED75E /* CWServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CWServicesTests.swift; sourceTree = "<group>"; };
+		126737D72C8E165500A6ED73 /* CWUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		126737DB2C8E177600A6ED73 /* CWUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		12793EA12C8E1A1E00747EF4 /* CWUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E46AAF2C8D8A28003B771D /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
 		12E46AB12C8D8A35003B771D /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		12E46AB32C8D8A3E003B771D /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12793EA22C8E1A1E00747EF4 /* CWUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +79,7 @@
 				121B240B2C8CB6DA00DED75E /* CWServices */,
 				121B24172C8CB6DA00DED75E /* CWServicesTests */,
 				121B240A2C8CB6DA00DED75E /* Products */,
+				126737D62C8E165500A6ED73 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +111,16 @@
 				121B24182C8CB6DA00DED75E /* CWServicesTests.swift */,
 			);
 			path = CWServicesTests;
+			sourceTree = "<group>";
+		};
+		126737D62C8E165500A6ED73 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12793EA12C8E1A1E00747EF4 /* CWUtilities.framework */,
+				126737DB2C8E177600A6ED73 /* CWUtilities.framework */,
+				126737D72C8E165500A6ED73 /* CWUtilities.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		12E46AAE2C8D89FB003B771D /* Endcoding */ = {

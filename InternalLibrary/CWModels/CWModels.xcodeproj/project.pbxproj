@@ -11,6 +11,7 @@
 		12042F202C8CBE2A00F18CA6 /* CWModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12042F152C8CBE2A00F18CA6 /* CWModels.framework */; };
 		12042F252C8CBE2A00F18CA6 /* CWModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12042F242C8CBE2A00F18CA6 /* CWModelsTests.swift */; };
 		12042F262C8CBE2A00F18CA6 /* CWModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 12042F182C8CBE2A00F18CA6 /* CWModels.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		12E46ACB2C8DA552003B771D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46ACA2C8DA552003B771D /* City.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		12042F192C8CBE2A00F18CA6 /* CWModels.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CWModels.docc; sourceTree = "<group>"; };
 		12042F1F2C8CBE2A00F18CA6 /* CWModelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CWModelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		12042F242C8CBE2A00F18CA6 /* CWModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CWModelsTests.swift; sourceTree = "<group>"; };
+		12E46ACA2C8DA552003B771D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		12042F172C8CBE2A00F18CA6 /* CWModels */ = {
 			isa = PBXGroup;
 			children = (
+				12E46AC92C8DA548003B771D /* City */,
 				12042F182C8CBE2A00F18CA6 /* CWModels.h */,
 				12042F192C8CBE2A00F18CA6 /* CWModels.docc */,
 			);
@@ -83,6 +86,14 @@
 				12042F242C8CBE2A00F18CA6 /* CWModelsTests.swift */,
 			);
 			path = CWModelsTests;
+			sourceTree = "<group>";
+		};
+		12E46AC92C8DA548003B771D /* City */ = {
+			isa = PBXGroup;
+			children = (
+				12E46ACA2C8DA552003B771D /* City.swift */,
+			);
+			path = City;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12E46ACB2C8DA552003B771D /* City.swift in Sources */,
 				12042F1A2C8CBE2A00F18CA6 /* CWModels.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +423,7 @@
 		12042F2D2C8CBE2A00F18CA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -426,6 +439,7 @@
 		12042F2E2C8CBE2A00F18CA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
