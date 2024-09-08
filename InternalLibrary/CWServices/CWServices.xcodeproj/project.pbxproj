@@ -11,6 +11,15 @@
 		121B24142C8CB6DA00DED75E /* CWServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 121B24092C8CB6DA00DED75E /* CWServices.framework */; };
 		121B24192C8CB6DA00DED75E /* CWServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121B24182C8CB6DA00DED75E /* CWServicesTests.swift */; };
 		121B241A2C8CB6DA00DED75E /* CWServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 121B240C2C8CB6DA00DED75E /* CWServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		12E46AB02C8D8A28003B771D /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46AAF2C8D8A28003B771D /* JSONParameterEncoder.swift */; };
+		12E46AB22C8D8A35003B771D /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46AB12C8D8A35003B771D /* ParameterEncoding.swift */; };
+		12E46AB42C8D8A3E003B771D /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46AB32C8D8A3E003B771D /* URLParameterEncoder.swift */; };
+		12E46AB72C8D8C25003B771D /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46AB62C8D8C25003B771D /* ServiceManager.swift */; };
+		12E46ABA2C8D8CB0003B771D /* CityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46AB92C8D8CB0003B771D /* CityService.swift */; };
+		12E46ABD2C8D8D08003B771D /* EndpointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46ABC2C8D8D08003B771D /* EndpointType.swift */; };
+		12E46ABF2C8D8D11003B771D /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46ABE2C8D8D11003B771D /* HttpMethod.swift */; };
+		12E46AC12C8D8D1F003B771D /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46AC02C8D8D1F003B771D /* HTTPTask.swift */; };
+		12E46AC32C8D8D2A003B771D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46AC22C8D8D2A003B771D /* Router.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +38,15 @@
 		121B240D2C8CB6DA00DED75E /* CWServices.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CWServices.docc; sourceTree = "<group>"; };
 		121B24132C8CB6DA00DED75E /* CWServicesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CWServicesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		121B24182C8CB6DA00DED75E /* CWServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CWServicesTests.swift; sourceTree = "<group>"; };
+		12E46AAF2C8D8A28003B771D /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
+		12E46AB12C8D8A35003B771D /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
+		12E46AB32C8D8A3E003B771D /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
+		12E46AB62C8D8C25003B771D /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
+		12E46AB92C8D8CB0003B771D /* CityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityService.swift; sourceTree = "<group>"; };
+		12E46ABC2C8D8D08003B771D /* EndpointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointType.swift; sourceTree = "<group>"; };
+		12E46ABE2C8D8D11003B771D /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
+		12E46AC02C8D8D1F003B771D /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
+		12E46AC22C8D8D2A003B771D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +89,10 @@
 		121B240B2C8CB6DA00DED75E /* CWServices */ = {
 			isa = PBXGroup;
 			children = (
+				12E46ABB2C8D8CF8003B771D /* HttpService */,
+				12E46AB82C8D8C82003B771D /* Services */,
+				12E46AB52C8D8C0D003B771D /* ServiceManager */,
+				12E46AAE2C8D89FB003B771D /* Endcoding */,
 				121B240C2C8CB6DA00DED75E /* CWServices.h */,
 				121B240D2C8CB6DA00DED75E /* CWServices.docc */,
 			);
@@ -83,6 +105,43 @@
 				121B24182C8CB6DA00DED75E /* CWServicesTests.swift */,
 			);
 			path = CWServicesTests;
+			sourceTree = "<group>";
+		};
+		12E46AAE2C8D89FB003B771D /* Endcoding */ = {
+			isa = PBXGroup;
+			children = (
+				12E46AAF2C8D8A28003B771D /* JSONParameterEncoder.swift */,
+				12E46AB12C8D8A35003B771D /* ParameterEncoding.swift */,
+				12E46AB32C8D8A3E003B771D /* URLParameterEncoder.swift */,
+			);
+			path = Endcoding;
+			sourceTree = "<group>";
+		};
+		12E46AB52C8D8C0D003B771D /* ServiceManager */ = {
+			isa = PBXGroup;
+			children = (
+				12E46AB62C8D8C25003B771D /* ServiceManager.swift */,
+			);
+			path = ServiceManager;
+			sourceTree = "<group>";
+		};
+		12E46AB82C8D8C82003B771D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				12E46AB92C8D8CB0003B771D /* CityService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		12E46ABB2C8D8CF8003B771D /* HttpService */ = {
+			isa = PBXGroup;
+			children = (
+				12E46ABC2C8D8D08003B771D /* EndpointType.swift */,
+				12E46ABE2C8D8D11003B771D /* HttpMethod.swift */,
+				12E46AC02C8D8D1F003B771D /* HTTPTask.swift */,
+				12E46AC22C8D8D2A003B771D /* Router.swift */,
+			);
+			path = HttpService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,7 +253,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12E46ABD2C8D8D08003B771D /* EndpointType.swift in Sources */,
+				12E46AB42C8D8A3E003B771D /* URLParameterEncoder.swift in Sources */,
+				12E46AC32C8D8D2A003B771D /* Router.swift in Sources */,
+				12E46AB22C8D8A35003B771D /* ParameterEncoding.swift in Sources */,
+				12E46AC12C8D8D1F003B771D /* HTTPTask.swift in Sources */,
+				12E46AB02C8D8A28003B771D /* JSONParameterEncoder.swift in Sources */,
+				12E46ABF2C8D8D11003B771D /* HttpMethod.swift in Sources */,
 				121B240E2C8CB6DA00DED75E /* CWServices.docc in Sources */,
+				12E46ABA2C8D8CB0003B771D /* CityService.swift in Sources */,
+				12E46AB72C8D8C25003B771D /* ServiceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +479,7 @@
 		121B24212C8CB6DA00DED75E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -426,6 +495,7 @@
 		121B24222C8CB6DA00DED75E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
