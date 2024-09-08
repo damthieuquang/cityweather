@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:CityWeather/CityWeather.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:CityWeather/../InternalLibrary/VendorLibs/VendorLibs.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:InternalLibrary/CWUtilities/CWUtilities.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:InternalLibrary/CWModels/CWModels.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:InternalLibrary/CWServices/CWServices.xcodeproj">
+   </FileRef>
+</Workspace>

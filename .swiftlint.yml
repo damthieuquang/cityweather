@@ -1,0 +1,13 @@
+opt_in_rules: # quy tắc được bật thêm
+  - empty_count
+  - explicit_init
+
+included: # thư mục hoặc tệp sẽ kiểm tra
+  - InternalLibrary
+
+excluded: # thư mục hoặc tệp không cần kiểm tra
+  - Pods
+  - Carthage
+  - MyAppTests
+
+line_length: 120

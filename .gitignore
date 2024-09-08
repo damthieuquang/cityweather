@@ -60,3 +60,17 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Xcode build and DerivedData
+build/
+DerivedData/
+
+# macOS system files
+.DS_Store
+
+# Temporary files
+*.tmp
+
+# Xcode workspace files
+*.xcworkspace/contents.xcworkspacedata
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
