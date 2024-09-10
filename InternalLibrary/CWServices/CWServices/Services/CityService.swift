@@ -13,7 +13,7 @@ enum CityService {
 }
 
 extension CityService: EndPointType {
-  var baseURL: String { AppEnvironment.configuration.baseURL }
+  var baseURL: String { AppEnvironment.current.baseURL }
   var path: String { "weather" }
   var httpMethod: HTTPMethod { .get }
   var version: EndpointVersion { .ver2x }
@@ -23,7 +23,7 @@ extension CityService: EndPointType {
     case let .city(name):
       return .requestParameters(bodyEncoding: .urlEncoding, urlParameters: [
         "q": name,
-        "appid": AppEnvironment.configuration.apiKey
+        "appid": AppEnvironment.current.apiKey
       ])
     }
   }

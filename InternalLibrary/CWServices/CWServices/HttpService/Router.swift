@@ -32,6 +32,16 @@ class Router<EndPoint: EndPointType>: ServiceRouter {
     do {
       let request = try buildRequest(from: route)
       task = session.dataTask(with: request, completionHandler: { data, response, error in
+        #if DEBUG
+        if let data = data {
+          do {
+            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            print(json)
+          } catch {
+            print(error)
+          }
+        }
+        #endif
         completion(data, response, error)
       })
     } catch {

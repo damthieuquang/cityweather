@@ -17,6 +17,7 @@
 		121B24412C8CB70900DED75E /* CityWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121B24402C8CB70900DED75E /* CityWeatherTests.swift */; };
 		121B244B2C8CB70900DED75E /* CityWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121B244A2C8CB70900DED75E /* CityWeatherUITests.swift */; };
 		121B244D2C8CB70900DED75E /* CityWeatherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121B244C2C8CB70900DED75E /* CityWeatherUITestsLaunchTests.swift */; };
+		12DCFF392C8F5488009C9826 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCFF382C8F5488009C9826 /* LoadingState.swift */; };
 		12E46A952C8D6640003B771D /* Launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46A942C8D6640003B771D /* Launcher.swift */; };
 		12E46A9E2C8D6EBC003B771D /* TabViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46A9D2C8D6EBC003B771D /* TabViewContainer.swift */; };
 		12E46AA02C8D6ECC003B771D /* TabViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46A9F2C8D6ECC003B771D /* TabViewViewModel.swift */; };
@@ -75,6 +76,8 @@
 		121B24462C8CB70900DED75E /* CityWeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CityWeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		121B244A2C8CB70900DED75E /* CityWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherUITests.swift; sourceTree = "<group>"; };
 		121B244C2C8CB70900DED75E /* CityWeatherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		12DCFF322C8F41C1009C9826 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		12DCFF382C8F5488009C9826 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 		12E46A942C8D6640003B771D /* Launcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launcher.swift; sourceTree = "<group>"; };
 		12E46A9D2C8D6EBC003B771D /* TabViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewContainer.swift; sourceTree = "<group>"; };
 		12E46A9F2C8D6ECC003B771D /* TabViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewViewModel.swift; sourceTree = "<group>"; };
@@ -153,6 +156,7 @@
 		121B242E2C8CB70800DED75E /* CityWeather */ = {
 			isa = PBXGroup;
 			children = (
+				12DCFF322C8F41C1009C9826 /* Info.plist */,
 				12E46A912C8D6535003B771D /* Application */,
 				12E46A992C8D6D39003B771D /* UI */,
 				121B24332C8CB70900DED75E /* Assets.xcassets */,
@@ -186,6 +190,14 @@
 			path = CityWeatherUITests;
 			sourceTree = "<group>";
 		};
+		12DCFF332C8F5247009C9826 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				12DCFF382C8F5488009C9826 /* LoadingState.swift */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
 		12E46A912C8D6535003B771D /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +219,7 @@
 		12E46A992C8D6D39003B771D /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				12DCFF332C8F5247009C9826 /* LoadingView */,
 				12E46AC82C8D9E5A003B771D /* SearchBar */,
 				12E46A9A2C8D6D44003B771D /* TabView */,
 				12E46A982C8D6ACC003B771D /* Screens */,
@@ -422,6 +435,7 @@
 				12E46AC72C8D9BF4003B771D /* SearchBar.swift in Sources */,
 				12E46AAB2C8D6F1D003B771D /* CityDetailView.swift in Sources */,
 				12E46A952C8D6640003B771D /* Launcher.swift in Sources */,
+				12DCFF392C8F5488009C9826 /* LoadingState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,11 +597,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CONFIG = "${SRCROOT}/Configuration/Config.json";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CityWeather/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENVIRONMENT = staging;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CityWeather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -613,11 +628,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CONFIG = "${SRCROOT}/Configuration/Config.json";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CityWeather/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENVIRONMENT = production;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CityWeather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

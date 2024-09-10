@@ -11,6 +11,8 @@
 		121B24142C8CB6DA00DED75E /* CWServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 121B24092C8CB6DA00DED75E /* CWServices.framework */; };
 		121B24192C8CB6DA00DED75E /* CWServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121B24182C8CB6DA00DED75E /* CWServicesTests.swift */; };
 		121B241A2C8CB6DA00DED75E /* CWServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 121B240C2C8CB6DA00DED75E /* CWServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		121C838E2C8F7128009752E5 /* CWModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 121C838D2C8F7128009752E5 /* CWModels.framework */; };
+		121C838F2C8F7128009752E5 /* CWModels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 121C838D2C8F7128009752E5 /* CWModels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		12793EA22C8E1A1E00747EF4 /* CWUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12793EA12C8E1A1E00747EF4 /* CWUtilities.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		12E46AB02C8D8A28003B771D /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46AAF2C8D8A28003B771D /* JSONParameterEncoder.swift */; };
 		12E46AB22C8D8A35003B771D /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E46AB12C8D8A35003B771D /* ParameterEncoding.swift */; };
@@ -33,12 +35,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		121C83902C8F7128009752E5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				121C838F2C8F7128009752E5 /* CWModels.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		121B24092C8CB6DA00DED75E /* CWServices.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CWServices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		121B240C2C8CB6DA00DED75E /* CWServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CWServices.h; sourceTree = "<group>"; };
 		121B240D2C8CB6DA00DED75E /* CWServices.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CWServices.docc; sourceTree = "<group>"; };
 		121B24132C8CB6DA00DED75E /* CWServicesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CWServicesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		121B24182C8CB6DA00DED75E /* CWServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CWServicesTests.swift; sourceTree = "<group>"; };
+		121C838D2C8F7128009752E5 /* CWModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		126737D72C8E165500A6ED73 /* CWUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		126737DB2C8E177600A6ED73 /* CWUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12793EA12C8E1A1E00747EF4 /* CWUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				121C838E2C8F7128009752E5 /* CWModels.framework in Frameworks */,
 				12793EA22C8E1A1E00747EF4 /* CWUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +134,7 @@
 		126737D62C8E165500A6ED73 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				121C838D2C8F7128009752E5 /* CWModels.framework */,
 				12793EA12C8E1A1E00747EF4 /* CWUtilities.framework */,
 				126737DB2C8E177600A6ED73 /* CWUtilities.framework */,
 				126737D72C8E165500A6ED73 /* CWUtilities.framework */,
@@ -182,6 +201,7 @@
 				121B24052C8CB6DA00DED75E /* Sources */,
 				121B24062C8CB6DA00DED75E /* Frameworks */,
 				121B24072C8CB6DA00DED75E /* Resources */,
+				121C83902C8F7128009752E5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -429,7 +449,7 @@
 		121B241E2C8CB6DA00DED75E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -462,7 +482,7 @@
 		121B241F2C8CB6DA00DED75E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

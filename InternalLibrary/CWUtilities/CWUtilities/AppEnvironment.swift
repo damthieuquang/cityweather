@@ -7,22 +7,29 @@
 
 import Foundation
 
-public enum AppEnvironment {
-  case debug
+public enum AppEnvironment: String {
+  case staging, production
 }
 
 public extension AppEnvironment {
-  static let aaa = "bbb"
+  private static let appEnvironmentKey = "app_environment"
 
-  static let configuration: EnvironmentConfig = {
-    let decoder = JSONDecoder()
-    decoder.keyDecodingStrategy = .convertFromSnakeCase
-    let url = Bundle.main.url(forResource: "config", withExtension: "json")!
-    do {
-      let data = try Data(contentsOf: url)
-      return try decoder.decode(EnvironmentConfig.self, from: data)
-    } catch {
-      fatalError("Something went wrong, please check configurations again!")
-    }
+  static let current: AppEnvironment = {
+    let value = Bundle.main.object(forInfoDictionaryKey: appEnvironmentKey) as? String ?? "staging"
+    return AppEnvironment(rawValue: value)!
   }()
+
+  var apiKey: String {
+    switch self {
+    case .staging: "43fa32f315e5f7de39417b6f3fee3f03"
+    case .production: ""
+    }
+  }
+
+  var baseURL: String {
+    switch self {
+    case .staging: "https://api.openweathermap.org/data"
+    case .production: ""
+    }
+  }
 }

@@ -6,24 +6,37 @@
 //
 
 import SwiftUI
+import CWModels
 
 struct FavoriteView: View {
   @StateObject var viewModel = FavoriteViewViewModel()
   
   var body: some View {
-    List {
-      ForEach(viewModel.cities, id: \.self) { city in
-        NavigationLink(destination: CityDetailView(city: city)) {
-          HStack {
-            Text(city.name ?? "")
+    NavigationStack {
+      List {
+        ForEach(viewModel.cities, id: \.self) { city in
+          NavigationLink(value: city) {
+            Text(city.name)
+          }
+          .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            Button(role: .destructive) {
+              Task {
+                await viewModel.deleteCity(city: city)
+              }
+            } label: {
+              Label("Remove", systemImage: "trash")
+            }
           }
         }
       }
-      .onDelete(perform: viewModel.deleteFavoriteCity)
+      .navigationDestination(for: City.self) { city in
+        CityDetailView(city: city)
+      }
+      .navigationTitle("Favourite")
     }
   }
 }
 
-//#Preview {
-//  FavoriteView()
-//}
+#Preview {
+  FavoriteView()
+}

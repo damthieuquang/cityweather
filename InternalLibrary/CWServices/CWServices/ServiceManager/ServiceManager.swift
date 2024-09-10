@@ -10,12 +10,12 @@ import CWModels
 
 enum ServiceResponse: String {
   case success
-  case authenticationError = "You need to be authenticated first."
-  case badRequest = "Bad request"
-  case outdated = "The url you requested is outdated."
+  case authenticationError = "Authentication required."
+  case badRequest = "Bad request."
+  case outdated = "Outdated URL."
   case failed = "Network request failed."
-  case noData = "Response returned with no data to decode."
-  case unableToDecode = "We could not decode the response."
+  case noData = "No data to decode."
+  case unableToDecode = "Unable to decode response."
 }
 
 enum Result<String> {

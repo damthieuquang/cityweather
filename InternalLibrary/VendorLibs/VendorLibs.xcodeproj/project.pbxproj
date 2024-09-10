@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		12042F752C8CCB3100F18CA6 /* VendorLibs.docc in Sources */ = {isa = PBXBuildFile; fileRef = 12042F742C8CCB3100F18CA6 /* VendorLibs.docc */; };
 		12042F762C8CCB3100F18CA6 /* VendorLibs.h in Headers */ = {isa = PBXBuildFile; fileRef = 12042F732C8CCB3100F18CA6 /* VendorLibs.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		12042F922C8CCEF000F18CA6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 12042F912C8CCEF000F18CA6 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +22,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12042F922C8CCEF000F18CA6 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +82,6 @@
 			);
 			name = VendorLibs;
 			packageProductDependencies = (
-				12042F912C8CCEF000F18CA6 /* Alamofire */,
 			);
 			productName = VendorLibs;
 			productReference = 12042F702C8CCB3100F18CA6 /* VendorLibs.framework */;
@@ -114,7 +111,6 @@
 			);
 			mainGroup = 12042F662C8CCB3100F18CA6;
 			packageReferences = (
-				12042F902C8CCEF000F18CA6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 12042F712C8CCB3100F18CA6 /* Products */;
 			projectDirPath = "";
@@ -360,25 +356,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		12042F902C8CCEF000F18CA6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.9.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		12042F912C8CCEF000F18CA6 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 12042F902C8CCEF000F18CA6 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 12042F672C8CCB3100F18CA6 /* Project object */;
 }
