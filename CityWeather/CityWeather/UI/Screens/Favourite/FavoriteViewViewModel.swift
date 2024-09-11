@@ -10,61 +10,35 @@ import CWModels
 
 final class FavoriteViewViewModel: ObservableObject {
   @Published var cities: [City] = []
-  private let realmService = RealmService.shared
+  @Published var selectedCity: City? = nil
+  private let realmService = RealmService()
   
   init() {
-    self.cities = mockData()
+    loadCities()
   }
-  
-  func mockData() -> [City] {
-    return [
-    ]
-  }
-  
+    
   func toggleFavorite(city: City) async {
-    do {
-      if cities.contains(city) {
-        try realmService.deleteCity(city: city)
-      } else {
-        try realmService.addCity(city: city)
-      }
-    } catch {
-      print(error)
+    if cities.contains(city) {
+      realmService.deleteCity(city: city)
+    } else {
+      realmService.addCity(city: city)
     }
   }
   
-  func loadCities() async {
-    do {
-      let cities = try realmService.getCities()
-      await MainActor.run {
-        self.cities = cities
-      }
-    } catch {
-      print(error)
-    }
+  func loadCities() {
+    let cities = realmService.getCities()
+    self.cities = cities
   }
   
-  func addCity(city: City) async {
-    do {
-      try realmService.addCity(city: city)
-    } catch {
-      print(error)
-    }
+  func addCity(city: City) {
+    realmService.addCity(city: city)
   }
   
-  func deleteCity(city: City) async {
-    do {
-      try realmService.deleteCity(city: city)
-    } catch {
-      print(error)
-    }
+  func deleteCity(city: City) {
+    realmService.deleteCity(city: city)
   }
   
-  func updateCity(city: City) async {
-    do {
-      try realmService.updateCity(city: city)
-    } catch {
-      print(error)
-    }
+  func updateCity(city: City) {
+    realmService.updateCity(city: city)
   }
 }

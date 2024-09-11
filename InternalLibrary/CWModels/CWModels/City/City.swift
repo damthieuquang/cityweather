@@ -21,7 +21,7 @@ public struct City: Codable, Identifiable, Hashable {
   public let sys: Sys?
   public let timezone, id: Int?
   public let name: String
-  public let cod: Int?
+  public let cod: Int? // Already optional, good
   public var isFavourite: Bool = false
 
   enum CodingKeys: String, CodingKey {
@@ -34,13 +34,13 @@ public struct City: Codable, Identifiable, Hashable {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.coordinate = try container.decodeIfPresent(Coordinate.self, forKey: .coord)
     self.weather = try container.decodeIfPresent([Weather].self, forKey: .weather)
-    self.base = try container.decode(String.self, forKey: .base)
-    self.main = try container.decode(Main.self, forKey: .main)
+    self.base = try container.decodeIfPresent(String.self, forKey: .base)
+    self.main = try container.decodeIfPresent(Main.self, forKey: .main)
     self.visibility = try container.decode(Int.self, forKey: .visibility)
-    self.wind = try container.decode(Wind.self, forKey: .wind)
-    self.clouds = try container.decode(Clouds.self, forKey: .clouds)
+    self.wind = try container.decodeIfPresent(Wind.self, forKey: .wind)
+    self.clouds = try container.decodeIfPresent(Clouds.self, forKey: .clouds)
     self.timeData = try container.decode(Int.self, forKey: .timeData)
-    self.sys = try container.decode(Sys.self, forKey: .sys)
+    self.sys = try container.decodeIfPresent(Sys.self, forKey: .sys)
     self.timezone = try container.decode(Int.self, forKey: .timezone)
     self.id = try container.decode(Int.self, forKey: .id)
     self.name = try container.decode(String.self, forKey: .name)
@@ -96,7 +96,7 @@ public struct City: Codable, Identifiable, Hashable {
     return lhs.id == rhs.id && lhs.name == rhs.name
   }
 
-  public func toRealmObject() -> CityRealmObject {
+  public func toObject() -> CityRealmObject {
     let cityRealmObject = CityRealmObject()
     cityRealmObject.id = id ?? 0
     cityRealmObject.name = name
@@ -184,4 +184,17 @@ public struct Wind: Codable, Hashable {
   public let speed: Double
   public let deg: Int
   public let gust: Double
+
+  public init(from decoder: any Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.speed = try container.decodeIfPresent(Double.self, forKey: .speed) ?? 0
+    self.deg = try container.decodeIfPresent(Int.self, forKey: .deg) ?? 0
+    self.gust = try container.decodeIfPresent(Double.self, forKey: .gust) ?? 0
+  }
+
+  public init(speed: Double, deg: Int, gust: Double) {
+    self.speed = speed
+    self.deg = deg
+    self.gust = gust
+  }
 }

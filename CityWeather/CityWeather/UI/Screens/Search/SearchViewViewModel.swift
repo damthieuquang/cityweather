@@ -12,7 +12,11 @@ import CWModels
 final class SearchViewViewModel: ObservableObject {
   private var serviceManager = ServiceManager.shared
   @Published var loadingState: LoadingState = .none
-  @Published var cities: [City] = []
+  @Published var history: [City] = []
+  
+  init() {
+    
+  }
   
   func getCityByName(cityName: String) {
     DispatchQueue.main.async {
@@ -27,9 +31,23 @@ final class SearchViewViewModel: ObservableObject {
         }
         if let city = city {
           self?.loadingState = .success
-          self?.cities.append(city)
+          self?.shouldAddHistory(city: city)
         }
       }
+    }
+  }
+  
+  func deleteHistory(city: City) {
+    history.removeAll(where: { $0 == city })
+  }
+  
+  private func shouldAddHistory(city: City) {
+    if history.contains(city) {
+      history.removeAll(where: { $0 == city })
+      history.insert(city, at: 0)
+    }
+    else {
+      history.insert(city, at: 0)
     }
   }
 }

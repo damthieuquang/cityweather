@@ -601,6 +601,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CityWeather/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				ENVIRONMENT = staging;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CityWeather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -632,6 +633,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CityWeather/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				ENVIRONMENT = production;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CityWeather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CWServices
 
 final class TabViewViewModel: ObservableObject {
   init() {

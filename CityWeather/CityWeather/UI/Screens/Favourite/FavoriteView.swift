@@ -13,30 +13,48 @@ struct FavoriteView: View {
   
   var body: some View {
     NavigationStack {
-      List {
-        ForEach(viewModel.cities, id: \.self) { city in
-          NavigationLink(value: city) {
-            Text(city.name)
-          }
-          .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-            Button(role: .destructive) {
-              Task {
-                await viewModel.deleteCity(city: city)
-              }
-            } label: {
-              Label("Remove", systemImage: "trash")
-            }
-          }
+      Group {
+        if viewModel.cities.isEmpty {
+          emptyStateView
+        } else {
+          cityListView
         }
       }
-      .navigationDestination(for: City.self) { city in
-        CityDetailView(city: city)
+      .onAppear {
+        viewModel.loadCities()
       }
       .navigationTitle("Favourite")
     }
   }
-}
-
-#Preview {
-  FavoriteView()
+  
+  private var emptyStateView: some View {
+    VStack {
+      Spacer()
+      Text("You have no favorite cities")
+        .font(.title2)
+        .foregroundColor(.secondary)
+      Spacer()
+    }
+  }
+  
+  private var cityListView: some View {
+    List {
+      ForEach(viewModel.cities, id: \.self) { city in
+        NavigationLink(value: city) {
+          Text(city.name)
+        }
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+          Button(role: .destructive) {
+            viewModel.deleteCity(city: city)
+          } label: {
+            Label("Remove", systemImage: "trash")
+          }
+        }
+      }
+    }
+    .listStyle(.automatic)
+    .navigationDestination(for: City.self) { city in
+      CityDetailView(city: city)
+    }
+  }
 }

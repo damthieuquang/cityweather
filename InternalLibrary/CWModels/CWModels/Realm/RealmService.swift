@@ -9,50 +9,77 @@ import Foundation
 import RealmSwift
 
 public class RealmService {
-  public static let shared = RealmService()
-
   private let realm: Realm
 
+  /// Initialize RealmService with optional Realm instance
   public init(realm: Realm? = nil) {
     do {
       self.realm = try realm ?? Realm()
       print("Realm file path: \(self.realm.configuration.fileURL?.absoluteString ?? "")")
     } catch {
-      fatalError("Failed to initialize Realm: \(error)")
+      preconditionFailure("Cannot create realm")
     }
   }
 
-  /// Adds a new city to the database
-  /// - Parameter city: The city to add
-  /// - Throws: RealmError if the operation fails
-  public func addCity(city: City) throws {
-    try realm.write {
-      realm.add(city.toRealmObject())
+  /// Add a city to the database
+  public func addCity(city: City) {
+    do {
+      try realm.write {
+        realm.add(city.toObject())
+      }
+    } catch {
+      print("Error adding city: \(error.localizedDescription)")
     }
   }
 
-  /// Retrieves all cities from the database
-  /// - Returns: An array of City objects
-  /// - Throws: RealmError if the operation fails
-  public func getCities() throws -> [City] {
-    return realm.objects(CityRealmObject.self).map { $0.toModel() }
+  /// Get all cities from the database
+  public func getCities() -> [City] {
+      let cityRealmObjects = realm.objects(CityRealmObject.self)
+      return cityRealmObjects.map { $0.toModel() }
   }
 
-  /// Updates an existing city in the database
-  /// - Parameter city: The city to update
-  /// - Throws: RealmError if the operation fails
-  public func updateCity(city: City) throws {
-    try realm.write {
-      realm.add(city.toRealmObject(), update: .modified)
+  /// Update a city in the database
+  public func updateCity(city: City) {
+    do {
+      try realm.write {
+        realm.add(city.toObject(), update: .modified)
+      }
+    } catch {
+      print("Error updating city: \(error.localizedDescription)")
     }
   }
 
-  /// Deletes a city from the database
-  /// - Parameter city: The city to delete
-  /// - Throws: RealmError if the operation fails
-  public func deleteCity(city: City) throws {
-    try realm.write {
-      realm.delete(city.toRealmObject())
+  /// Delete a city from the database
+  public func deleteCity(city: City) {
+    do {
+      let cityObject = realm.object(ofType: CityRealmObject.self, forPrimaryKey: city.id)
+      if let cityObject = cityObject {
+        try realm.write {
+          realm.delete(cityObject)
+        }
+      } else {
+        print("City not found in Realm")
+      }
+    } catch {
+      print("Error deleting city: \(error.localizedDescription)")
+    }
+  }
+
+  // MARK: - Background Operations
+
+  /// Add a city to the database on a background thread
+  public func addCityInBackground(city: City) {
+    DispatchQueue.global().async {
+      autoreleasepool {
+        do {
+          let realm = try Realm()  // Create new Realm instance in background thread
+          try realm.write {
+            realm.add(city.toObject())
+          }
+        } catch {
+          print("Error adding city in background: \(error.localizedDescription)")
+        }
+      }
     }
   }
 }

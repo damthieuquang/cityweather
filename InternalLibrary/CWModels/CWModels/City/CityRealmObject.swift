@@ -18,7 +18,7 @@ public class CityRealmObject: Object {
   @Persisted var clouds: CloudsRealmObject?
   @Persisted var isFavourite: Bool
 
-  func toModel() -> City {
+  public func toModel() -> City {
     let weatherArray = weather.map { weatherRealmObject in
       return Weather(
         id: weatherRealmObject.id,

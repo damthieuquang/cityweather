@@ -23,7 +23,8 @@ extension CityService: EndPointType {
     case let .city(name):
       return .requestParameters(bodyEncoding: .urlEncoding, urlParameters: [
         "q": name,
-        "appid": AppEnvironment.current.apiKey
+        "appid": AppEnvironment.current.apiKey,
+        "units": "metric"
       ])
     }
   }

@@ -44,12 +44,20 @@ struct SearchView: View {
   }
   
   private var cityListView: some View {
-    List(viewModel.cities, id: \.self) { city in
-      NavigationLink(city.name, value: city)
+    List {
+      Text("Recent Search")
+        .font(.subheadline)
+        .fontWeight(.bold)
+      ForEach(viewModel.history, id: \.self) { city in
+        NavigationLink(city.name, value: city)
+          .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            Button(role: .destructive) {
+              viewModel.deleteHistory(city: city)
+            } label: {
+              Label("Remove", systemImage: "trash")
+            }
+          }
+      }
     }
   }
-}
-
-#Preview {
-  SearchView()
 }
