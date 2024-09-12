@@ -42,93 +42,141 @@ struct CityDetailView: View {
   
   private var currentWeatherView: some View {
     VStack(alignment: .leading, spacing: 10) {
-      Text("Now")
+      Text(viewModel.nowText)
         .font(.title2)
         .fontWeight(.bold)
+        .foregroundColor(.white)
       HStack(alignment: .top, spacing: 20) {
         VStack(alignment: .leading) {
           HStack(alignment: .top) {
-            Text("\(Int(viewModel.city.main?.temp ?? 0))°")
+            Text(viewModel.temperatureText)
               .font(.system(size: 60))
               .fontWeight(.thin)
+              .foregroundColor(.white)
             weatherIconView
           }
-          Text("Feels like \(Int(viewModel.city.main?.feelsLike ?? 0))°")
+          Text(viewModel.feelsLikeTemperatureText)
             .font(.title3)
+            .foregroundColor(.white.opacity(0.8))
         }
         VStack(alignment: .leading) {
           if let weather = viewModel.city.weather?.first {
             Text(weather.main)
               .font(.title2)
               .fontWeight(.semibold)
+              .foregroundColor(.white)
             Text(weather.description)
-              .foregroundColor(.secondary)
+              .foregroundColor(.white.opacity(0.8))
           }
-          if let coord = viewModel.city.coordinate {
-            Text("Lat: \(coord.lat), Lon: \(coord.lon)")
-              .font(.caption)
-              .foregroundColor(.secondary)
-          }
-          DetailRow(title: "Precip", value: "\(Int(viewModel.city.main?.humidity ?? 0))%")
-          DetailRow(title: "Humidity", value: "\(Int(viewModel.city.main?.humidity ?? 0))%")
-          if let wind = viewModel.city.wind {
-            DetailRow(title: "Wind", value: "\(Int(wind.speed)) km/h")
-          }
+          Text(viewModel.coordinateText)
+            .font(.caption)
+            .foregroundColor(.white.opacity(0.8))
+          DetailRow(title: viewModel.precipText, value: viewModel.precipitationText)
+          DetailRow(title: viewModel.humidityText, value: viewModel.humidityValue)
+          DetailRow(title: viewModel.windText, value: viewModel.windSpeedText)
         }
       }
     }
     .padding()
-    .background(Color.blue.opacity(0.1))
+    .background(
+      LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.6), Color.cyan.opacity(0.6)]),
+                     startPoint: .topLeading,
+                     endPoint: .bottomTrailing)
+    )
     .cornerRadius(15)
+    .shadow(radius: 5)
   }
   
   private var hourlyForecastView: some View {
     VStack(alignment: .leading, spacing: 10) {
-      Text("Hourly Forecast")
+      Text(viewModel.hourlyForecastText)
         .font(.title2)
         .fontWeight(.bold)
+        .foregroundColor(.white)
       ScrollView(.horizontal, showsIndicators: false) {
         HStack(spacing: 20) {
           ForEach(0..<7) { hour in
             VStack {
               Text(formatHour(hour: hour))
                 .font(.caption)
+                .foregroundColor(.white)
               weatherIconView
-              Text("\(Int(viewModel.city.main?.temp ?? 0))°")
+              Text(viewModel.temperatureText)
                 .font(.title3)
+                .foregroundColor(.white)
             }
           }
         }
       }
     }
     .padding()
-    .background(Color.blue.opacity(0.1))
+    .background(
+      LinearGradient(gradient: Gradient(colors: [Color.purple.opacity(0.6), Color.pink.opacity(0.6)]),
+                     startPoint: .topLeading,
+                     endPoint: .bottomTrailing)
+    )
     .cornerRadius(15)
+    .shadow(radius: 5)
   }
   
   private var cloudsView: some View {
-    VStack(alignment: .leading) {
-      Text("Clouds")
+    VStack(alignment: .leading, spacing: 10) {
+      Text(viewModel.cloudsText)
         .font(.headline)
-      if let clouds = viewModel.city.clouds {
-        DetailRow(title: "Cloudiness", value: "\(clouds.all)%")
+        .foregroundColor(.white)
+      HStack {
+        Image(systemName: "cloud.fill")
+          .foregroundColor(.white)
+          .font(.system(size: 40))
+        VStack(alignment: .leading) {
+          Text(viewModel.cloudinessText)
+            .foregroundColor(.white.opacity(0.8))
+          Text(viewModel.cloudinessPercentText)
+            .font(.title2)
+            .fontWeight(.bold)
+            .foregroundColor(.white)
+        }
       }
     }
+    .padding()
+    .background(
+      LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]),
+                     startPoint: .topLeading,
+                     endPoint: .bottomTrailing)
+    )
+    .cornerRadius(15)
+    .shadow(radius: 5)
   }
   
   private var systemInfoView: some View {
-    VStack(alignment: .leading) {
-      Text("System Info")
+    VStack(alignment: .leading, spacing: 15) {
+      Text(viewModel.systemText)
         .font(.headline)
+        .foregroundColor(.white)
       if let sys = viewModel.city.sys {
-        DetailRow(title: "Country", value: sys.country)
-        DetailRow(title: "Sunrise", value: formatTime(sys.sunrise))
-        DetailRow(title: "Sunset", value: formatTime(sys.sunset))
-      }
-      if let timezone = viewModel.city.timezone {
-        DetailRow(title: "Timezone", value: "UTC \(formatTimezone(timezone))")
+        HStack {
+          VStack(alignment: .leading, spacing: 10) {
+            InfoRow(icon: "globe", title: viewModel.country, value: sys.country)
+            InfoRow(icon: "sunrise.fill", title: viewModel.sunrise, value: formatTime(sys.sunrise))
+          }
+          Spacer()
+          VStack(alignment: .leading, spacing: 10) {
+            if let timezone = viewModel.city.timezone {
+              InfoRow(icon: "clock.fill", title: viewModel.timezone, value: "UTC \(formatTimezone(timezone))")
+            }
+            InfoRow(icon: "sunset.fill", title: viewModel.sunset, value: formatTime(sys.sunset))
+          }
+        }
       }
     }
+    .padding()
+    .background(
+      LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red]),
+                     startPoint: .topLeading,
+                     endPoint: .bottomTrailing)
+    )
+    .cornerRadius(15)
+    .shadow(radius: 5)
   }
   
   private var weatherIconView: some View {
@@ -138,7 +186,7 @@ struct CityDetailView: View {
       .font(.largeTitle)
   }
   
-  private func formatTime(_ unixTime: Int) -> String {
+  private func formatTime(_ unixTime: TimeInterval) -> String {
     let date = Date(timeIntervalSince1970: TimeInterval(unixTime))
     let formatter = DateFormatter()
     formatter.dateFormat = "HH:mm"
@@ -169,9 +217,32 @@ struct DetailRow: View {
   var body: some View {
     HStack {
       Text(title)
-        .foregroundColor(.secondary)
+        .foregroundColor(.white.opacity(0.8))
       Spacer()
       Text(value)
+        .foregroundColor(.white)
+    }
+  }
+}
+
+private struct InfoRow: View {
+  let icon: String
+  let title: String
+  let value: String
+  
+  var body: some View {
+    HStack {
+      Image(systemName: icon)
+        .foregroundColor(.white)
+        .frame(width: 30)
+      VStack(alignment: .leading) {
+        Text(title)
+          .font(.caption)
+          .foregroundColor(.white.opacity(0.8))
+        Text(value)
+          .fontWeight(.semibold)
+          .foregroundColor(.white)
+      }
     }
   }
 }

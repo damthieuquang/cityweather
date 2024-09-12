@@ -13,7 +13,7 @@ struct SearchBar: View {
   
   var body: some View {
     HStack {
-      TextField("Tìm kiếm...", text: $searchText, onCommit: {
+      TextField("Search...", text: $searchText, onCommit: {
         onSearchButtonClicked(standardizeSearchText(searchText))
       })
       .padding(8)

@@ -10,13 +10,17 @@ import CWModels
 
 final class FavoriteViewViewModel: ObservableObject {
   @Published var cities: [City] = []
-  @Published var selectedCity: City? = nil
+  
   private let realmService = RealmService()
+  
+  var navigationTitle: String { "Favourite" }
+  var emptyStateMessage: String { "You have no favorite cities" }
+  var removeButtonLabel: String { "Remove" }
   
   init() {
     loadCities()
   }
-    
+  
   func toggleFavorite(city: City) async {
     if cities.contains(city) {
       realmService.deleteCity(city: city)
@@ -28,10 +32,6 @@ final class FavoriteViewViewModel: ObservableObject {
   func loadCities() {
     let cities = realmService.getCities()
     self.cities = cities
-  }
-  
-  func addCity(city: City) {
-    realmService.addCity(city: city)
   }
   
   func deleteCity(city: City) {

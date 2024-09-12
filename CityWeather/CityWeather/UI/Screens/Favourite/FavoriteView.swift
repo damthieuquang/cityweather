@@ -23,14 +23,14 @@ struct FavoriteView: View {
       .onAppear {
         viewModel.loadCities()
       }
-      .navigationTitle("Favourite")
+      .navigationTitle(viewModel.navigationTitle)
     }
   }
   
   private var emptyStateView: some View {
     VStack {
       Spacer()
-      Text("You have no favorite cities")
+      Text(viewModel.emptyStateMessage)
         .font(.title2)
         .foregroundColor(.secondary)
       Spacer()
@@ -47,7 +47,7 @@ struct FavoriteView: View {
           Button(role: .destructive) {
             viewModel.deleteCity(city: city)
           } label: {
-            Label("Remove", systemImage: "trash")
+            Label(viewModel.removeButtonLabel, systemImage: "trash")
           }
         }
       }

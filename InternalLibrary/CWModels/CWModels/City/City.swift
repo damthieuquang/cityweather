@@ -164,19 +164,76 @@ public struct Main: Codable, Hashable {
     case grndLevel = "grnd_level"
     case tempMax = "temp_max"
   }
+
+  public init(from decoder: any Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.temp = try container.decodeIfPresent(Double.self, forKey: .temp) ?? 0
+    self.feelsLike = try container.decodeIfPresent(Double.self, forKey: .feelsLike) ?? 0
+    self.tempMin = try container.decodeIfPresent(Double.self, forKey: .tempMin) ?? 0
+    self.tempMax = try container.decodeIfPresent(Double.self, forKey: .tempMax) ?? 0
+    self.pressure = try container.decodeIfPresent(Int.self, forKey: .pressure) ?? 0
+    self.humidity = try container.decodeIfPresent(Int.self, forKey: .humidity) ?? 0
+    self.seaLevel = try container.decodeIfPresent(Int.self, forKey: .seaLevel) ?? 0
+    self.grndLevel = try container.decodeIfPresent(Int.self, forKey: .grndLevel) ?? 0
+  }
+
+  public init(temp: Double, feelsLike: Double, tempMin: Double,
+              tempMax: Double, pressure: Int, humidity: Int, seaLevel: Int,
+              grndLevel: Int) {
+    self.temp = temp
+    self.feelsLike = feelsLike
+    self.tempMin = tempMin
+    self.tempMax = tempMax
+    self.pressure = pressure
+    self.humidity = humidity
+    self.seaLevel = seaLevel
+    self.grndLevel = grndLevel
+  }
 }
 
 // MARK: - Sys
 public struct Sys: Codable, Hashable {
   public let type, id: Int
   public let country: String
-  public let sunrise, sunset: Int
+  public let sunrise, sunset: TimeInterval
+
+  public init(from decoder: any Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.type = try container.decodeIfPresent(Int.self, forKey: .type) ?? 0
+    self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+    self.country = try container.decodeIfPresent(String.self, forKey: .country) ?? ""
+    self.sunrise = try container.decodeIfPresent(TimeInterval.self, forKey: .sunrise) ?? 0
+    self.sunset = try container.decodeIfPresent(TimeInterval.self, forKey: .sunset) ?? 0
+  }
+
+  public init(type: Int, id: Int, country: String, sunrise: TimeInterval, sunset: TimeInterval) {
+    self.type = type
+    self.id = id
+    self.country = country
+    self.sunrise = sunrise
+    self.sunset = sunset
+  }
 }
 
 // MARK: - Weather
 public struct Weather: Codable, Hashable {
   public let id: Int
   public let main, description, icon: String
+
+  public init(from decoder: any Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+    self.main = try container.decodeIfPresent(String.self, forKey: .main) ?? ""
+    self.description = try container.decodeIfPresent(String.self, forKey: .description) ?? ""
+    self.icon = try container.decodeIfPresent(String.self, forKey: .icon) ?? ""
+  }
+
+  public init(id: Int, main: String, description: String, icon: String) {
+    self.id = id
+    self.main = main
+    self.description = description
+    self.icon = icon
+  }
 }
 
 // MARK: - Wind

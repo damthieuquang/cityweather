@@ -55,6 +55,20 @@ public class RealmService {
       let cityObject = realm.object(ofType: CityRealmObject.self, forPrimaryKey: city.id)
       if let cityObject = cityObject {
         try realm.write {
+          // Delete WeatherRealmObjects
+          realm.delete(cityObject.weather)
+
+          // Delete MainRealmObject if it exists
+          if let mainObject = cityObject.main {
+            realm.delete(mainObject)
+          }
+
+          // Delete WindRealmObject if it exists
+          if let windObject = cityObject.wind {
+            realm.delete(windObject)
+          }
+
+          // Finally, delete the city object
           realm.delete(cityObject)
         }
       } else {
