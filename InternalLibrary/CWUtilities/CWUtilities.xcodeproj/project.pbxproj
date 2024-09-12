@@ -12,7 +12,6 @@
 		12042F5A2C8CC5BE00F18CA6 /* CWUtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12042F592C8CC5BE00F18CA6 /* CWUtilitiesTests.swift */; };
 		12042F5B2C8CC5BE00F18CA6 /* CWUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 12042F4D2C8CC5BE00F18CA6 /* CWUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1244ADDC2C8E11AD002E0BF0 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1244ADDB2C8E11AD002E0BF0 /* AppEnvironment.swift */; };
-		1244ADDE2C8E1310002E0BF0 /* EnvironmentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1244ADDD2C8E1310002E0BF0 /* EnvironmentConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +31,6 @@
 		12042F542C8CC5BE00F18CA6 /* CWUtilitiesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CWUtilitiesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		12042F592C8CC5BE00F18CA6 /* CWUtilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CWUtilitiesTests.swift; sourceTree = "<group>"; };
 		1244ADDB2C8E11AD002E0BF0 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
-		1244ADDD2C8E1310002E0BF0 /* EnvironmentConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +76,6 @@
 				12042F4D2C8CC5BE00F18CA6 /* CWUtilities.h */,
 				12042F4E2C8CC5BE00F18CA6 /* CWUtilities.docc */,
 				1244ADDB2C8E11AD002E0BF0 /* AppEnvironment.swift */,
-				1244ADDD2C8E1310002E0BF0 /* EnvironmentConfig.swift */,
 			);
 			path = CWUtilities;
 			sourceTree = "<group>";
@@ -200,7 +197,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1244ADDE2C8E1310002E0BF0 /* EnvironmentConfig.swift in Sources */,
 				12042F4F2C8CC5BE00F18CA6 /* CWUtilities.docc in Sources */,
 				1244ADDC2C8E11AD002E0BF0 /* AppEnvironment.swift in Sources */,
 			);
