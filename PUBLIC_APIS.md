@@ -193,4 +193,4 @@ ServiceManager.shared.getCityByName(cityName: "Hanoi") { city, error in
 
 ---
 
-_Last updated automatically by documentation generator on {{DATE}}._
+_Last updated automatically by documentation generator on 2025-07-04._
