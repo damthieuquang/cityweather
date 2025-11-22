@@ -10,6 +10,8 @@ import CWModels
 
 struct SearchView: View {
   @StateObject private var viewModel: SearchViewViewModel
+  @State private var searchText = ""
+  @FocusState private var isSearchFocused: Bool
 
   init(viewModel: SearchViewViewModel = SearchViewViewModel()) {
     _viewModel = StateObject(wrappedValue: viewModel)
@@ -18,7 +20,7 @@ struct SearchView: View {
   var body: some View {
     NavigationStack {
       VStack {
-        SearchBar { text in
+        SearchBar(searchText: $searchText, isFocused: $isSearchFocused) { text in
           viewModel.getCityByName(cityName: text)
         }
         content
@@ -32,10 +34,15 @@ struct SearchView: View {
   
   @ViewBuilder
   private var content: some View {
-    switch viewModel.loadingState {
-    case .loading: loadingView
-    case .success: cityListView
-    case .none, .failed: Spacer()
+    if isSearchFocused {
+      cityListView
+    }
+    else {
+      switch viewModel.loadingState {
+      case .loading: loadingView
+      case .success: cityListView
+      case .none, .failed: Spacer()
+      }
     }
   }
   
@@ -54,6 +61,10 @@ struct SearchView: View {
         .fontWeight(.bold)
       ForEach(viewModel.history, id: \.self) { city in
         NavigationLink(city.name, value: city)
+          .simultaneousGesture(TapGesture().onEnded {
+            searchText = city.name
+            viewModel.getCityByName(cityName: city.name)
+          })
           .swipeActions(edge: .trailing, allowsFullSwipe: true) {
             Button(role: .destructive) {
               viewModel.deleteHistory(city: city)

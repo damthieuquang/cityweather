@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct SearchBar: View {
-  @State private var searchText = ""
+  @Binding var searchText: String
+  @FocusState.Binding var isFocused: Bool
   var onSearchButtonClicked: (String) -> Void
-  
+
   var body: some View {
     HStack {
       TextField("Search...", text: $searchText, onCommit: {
-        onSearchButtonClicked(standardizeSearchText(searchText))
+        let standardizedText = standardizeSearchText(searchText)
+        searchText = standardizedText
+        onSearchButtonClicked(standardizedText)
       })
       .padding(8)
+      .focused($isFocused)
       .background(Color(.systemGray6))
       .cornerRadius(8)
       .padding(.horizontal)
