@@ -18,11 +18,6 @@ enum ServiceResponse: String {
   case unableToDecode = "Unable to decode response."
 }
 
-enum Result<String> {
-  case success
-  case failure(String)
-}
-
 public class ServiceManager {
 //  static let environment: NetworkEnvironment = .staging
   public static let shared = ServiceManager()
@@ -42,7 +37,7 @@ public extension ServiceManager {
       if let response = response as? HTTPURLResponse {
         let result = self.handleNetworkResponse(response)
         switch result {
-        case .success:
+        case .success(_):
           guard let responseData = data else {
             completion(nil, ServiceResponse.noData.rawValue)
             return
@@ -53,8 +48,8 @@ public extension ServiceManager {
           } catch {
             completion(nil, ServiceResponse.unableToDecode.rawValue)
           }
-        case .failure(let networkFailureError):
-          completion(nil, networkFailureError)
+        case .failure(let error):
+          completion(nil, error.rawValue)
         }
       }
     }
@@ -62,13 +57,18 @@ public extension ServiceManager {
 }
 
 private extension ServiceManager {
-  func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String> {
+  func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<Void, ServiceResponse> {
     switch response.statusCode {
-    case 200 ... 299: return .success
-    case 401 ... 500: return .failure(ServiceResponse.authenticationError.rawValue)
-    case 501 ... 599: return .failure(ServiceResponse.badRequest.rawValue)
-    case 600: return .failure(ServiceResponse.outdated.rawValue)
-    default: return .failure(ServiceResponse.failed.rawValue)
+    case 200 ... 299:
+      return .success(())
+    case 401 ... 500:
+      return .failure(.authenticationError)
+    case 501 ... 599:
+      return .failure(.badRequest)
+    case 600:
+      return .failure(.outdated)
+    default:
+      return .failure(.failed)
     }
   }
 }
