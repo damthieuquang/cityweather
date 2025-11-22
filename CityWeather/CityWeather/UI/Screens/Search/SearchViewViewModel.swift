@@ -18,11 +18,18 @@ extension ServiceManager: CitySearching {}
 
 final class SearchViewViewModel: ObservableObject {
   private let citySearcher: CitySearching
+  private let userDefaults: UserDefaults
+  private let historyKey = "recentSearchHistory"
   @Published var loadingState: LoadingState = .none
-  @Published var history: [City] = []
+  @Published var history: [City] = [] {
+    didSet { persistHistory() }
+  }
 
-  init(citySearcher: CitySearching = ServiceManager.shared) {
+  init(citySearcher: CitySearching = ServiceManager.shared,
+       userDefaults: UserDefaults = .standard) {
     self.citySearcher = citySearcher
+    self.userDefaults = userDefaults
+    loadHistory()
   }
 
   func getCityByName(cityName: String) {
@@ -47,7 +54,7 @@ final class SearchViewViewModel: ObservableObject {
   func deleteHistory(city: City) {
     history.removeAll(where: { $0 == city })
   }
-  
+
   private func shouldAddHistory(city: City) {
     if history.contains(city) {
       history.removeAll(where: { $0 == city })
@@ -56,5 +63,16 @@ final class SearchViewViewModel: ObservableObject {
     else {
       history.insert(city, at: 0)
     }
+  }
+
+  private func persistHistory() {
+    guard let encoded = try? JSONEncoder().encode(history) else { return }
+    userDefaults.set(encoded, forKey: historyKey)
+  }
+
+  private func loadHistory() {
+    guard let data = userDefaults.data(forKey: historyKey) else { return }
+    guard let savedHistory = try? JSONDecoder().decode([City].self, from: data) else { return }
+    history = savedHistory
   }
 }

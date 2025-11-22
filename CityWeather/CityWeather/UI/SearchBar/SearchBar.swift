@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct SearchBar: View {
-  @State private var searchText = ""
+  @Binding var searchText: String
   var onSearchButtonClicked: (String) -> Void
   
   var body: some View {
     HStack {
       TextField("Search...", text: $searchText, onCommit: {
-        onSearchButtonClicked(standardizeSearchText(searchText))
+        let standardizedText = standardizeSearchText(searchText)
+        searchText = standardizedText
+        onSearchButtonClicked(standardizedText)
       })
       .padding(8)
       .background(Color(.systemGray6))
