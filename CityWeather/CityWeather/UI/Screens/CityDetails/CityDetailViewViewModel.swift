@@ -24,34 +24,38 @@ final class CityDetailViewViewModel: ObservableObject {
   var precipText: String { "Precip" }
   var humidityText: String { "Humidity" }
   var windText: String { "Wind" }
-  var temperatureText: String {
-    "\(Int(city.main?.temp ?? 0))°"
+  var temperatureText: String? {
+    guard let temp = city.main?.temp else { return nil }
+    return "\(Int(temp))°"
   }
-  
-  var feelsLikeTemperatureText: String {
-    "Feels like \(Int(city.main?.feelsLike ?? 0))°"
+
+  var feelsLikeTemperatureText: String? {
+    guard let feelsLike = city.main?.feelsLike else { return nil }
+    return "Feels like \(Int(feelsLike))°"
   }
-  
-  var precipitationText: String {
-    "\(Int(city.main?.humidity ?? 0))%"
+
+  var precipitationText: String? {
+    guard let precipitation = city.main?.humidity else { return nil }
+    return "\(precipitation)%"
   }
-  
-  var humidityValue: String {
-    "\(Int(city.main?.humidity ?? 0))%"
+
+  var humidityValue: String? {
+    guard let humidity = city.main?.humidity else { return nil }
+    return "\(humidity)%"
   }
-  
-  var windSpeedText: String {
-    guard let wind = city.wind else { return "" }
+
+  var windSpeedText: String? {
+    guard let wind = city.wind else { return nil }
     return "\(Int(wind.speed)) km/h"
   }
-  
-  var coordinateText: String {
-    guard let coord = city.coordinate else { return "" }
+
+  var coordinateText: String? {
+    guard let coord = city.coordinate else { return nil }
     return String(format: NSLocalizedString("Lat: %.2f, Lon: %.2f", comment: "Coordinate format"), coord.lat, coord.lon)
   }
-  
-  var cloudinessPercentText: String {
-    guard let clouds = city.clouds else { return "" }
+
+  var cloudinessPercentText: String? {
+    guard let clouds = city.clouds else { return nil }
     return "\(clouds.all)%"
   }
   
