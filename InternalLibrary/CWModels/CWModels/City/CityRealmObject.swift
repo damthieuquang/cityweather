@@ -28,33 +28,50 @@ public class CityRealmObject: Object {
       )
     }
 
-    let main = Main(
-      temp: main?.temp ?? 0,
-      feelsLike: main?.feelsLike ?? 0,
-      tempMin: main?.tempMin ?? 0,
-      tempMax: main?.tempMax ?? 0,
-      pressure: main?.pressure ?? 0,
-      humidity: main?.humidity ?? 0,
-      seaLevel: main?.seaLevel ?? 0,
-      grndLevel: main?.grndLevel ?? 0
-    )
+    let weatherModel: [Weather]? = weatherArray.isEmpty ? nil : Array(weatherArray)
 
-    let wind = Wind(
-      speed: wind?.speed ?? 0,
-      deg: wind?.deg ?? 0,
-      gust: wind?.gust ?? 0
-    )
+    let mainModel: Main?
+    if let mainRealm = main {
+      mainModel = Main(
+        temp: mainRealm.temp,
+        feelsLike: mainRealm.feelsLike,
+        tempMin: mainRealm.tempMin,
+        tempMax: mainRealm.tempMax,
+        pressure: mainRealm.pressure,
+        humidity: mainRealm.humidity,
+        seaLevel: mainRealm.seaLevel,
+        grndLevel: mainRealm.grndLevel
+      )
+    } else {
+      mainModel = nil
+    }
 
-    let clouds = Clouds(all: clouds?.all ?? 0)
+    let windModel: Wind?
+    if let windRealm = wind {
+      windModel = Wind(
+        speed: windRealm.speed,
+        deg: windRealm.deg,
+        gust: windRealm.gust
+      )
+    } else {
+      windModel = nil
+    }
+
+    let cloudsModel: Clouds?
+    if let cloudsRealm = clouds {
+      cloudsModel = Clouds(all: cloudsRealm.all)
+    } else {
+      cloudsModel = nil
+    }
 
     let city = City(
       coordinate: nil,
-      weather: Array(weatherArray),
+      weather: weatherModel,
       base: nil,
-      main: main,
+      main: mainModel,
       visibility: nil,
-      wind: wind,
-      clouds: clouds,
+      wind: windModel,
+      clouds: cloudsModel,
       timeData: nil,
       sys: Sys(
         type: 0,

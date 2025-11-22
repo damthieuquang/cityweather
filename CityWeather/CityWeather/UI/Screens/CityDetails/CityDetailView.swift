@@ -1,17 +1,3 @@
-//
-//  CityDetailView.swift
-//  CityWeather
-//
-//  Created by Quang Dam on 8/9/24.
-//
-
-//
-//  CityDetailView.swift
-//  CityWeather
-//
-//  Created by Quang Dam on 8/9/24.
-//
-
 import SwiftUI
 import CWModels
 
@@ -48,16 +34,23 @@ struct CityDetailView: View {
         .foregroundColor(.white)
       HStack(alignment: .top, spacing: 20) {
         VStack(alignment: .leading) {
-          HStack(alignment: .top) {
-            Text(viewModel.temperatureText)
-              .font(.system(size: 60))
-              .fontWeight(.thin)
-              .foregroundColor(.white)
+          if let temperatureText = viewModel.temperatureText {
+            HStack(alignment: .top) {
+              Text(temperatureText)
+                .font(.system(size: 60))
+                .fontWeight(.thin)
+                .foregroundColor(.white)
+              weatherIconView
+            }
+          } else {
             weatherIconView
           }
-          Text(viewModel.feelsLikeTemperatureText)
-            .font(.title3)
-            .foregroundColor(.white.opacity(0.8))
+
+          if let feelsLikeTemperatureText = viewModel.feelsLikeTemperatureText {
+            Text(feelsLikeTemperatureText)
+              .font(.title3)
+              .foregroundColor(.white.opacity(0.8))
+          }
         }
         VStack(alignment: .leading) {
           if let weather = viewModel.city.weather?.first {
@@ -68,12 +61,20 @@ struct CityDetailView: View {
             Text(weather.description)
               .foregroundColor(.white.opacity(0.8))
           }
-          Text(viewModel.coordinateText)
-            .font(.caption)
-            .foregroundColor(.white.opacity(0.8))
-          DetailRow(title: viewModel.precipText, value: viewModel.precipitationText)
-          DetailRow(title: viewModel.humidityText, value: viewModel.humidityValue)
-          DetailRow(title: viewModel.windText, value: viewModel.windSpeedText)
+          if let coordinateText = viewModel.coordinateText {
+            Text(coordinateText)
+              .font(.caption)
+              .foregroundColor(.white.opacity(0.8))
+          }
+          if let precipitationText = viewModel.precipitationText {
+            DetailRow(title: viewModel.precipText, value: precipitationText)
+          }
+          if let humidityValue = viewModel.humidityValue {
+            DetailRow(title: viewModel.humidityText, value: humidityValue)
+          }
+          if let windSpeedText = viewModel.windSpeedText {
+            DetailRow(title: viewModel.windText, value: windSpeedText)
+          }
         }
       }
     }
@@ -101,9 +102,11 @@ struct CityDetailView: View {
                 .font(.caption)
                 .foregroundColor(.white)
               weatherIconView
-              Text(viewModel.temperatureText)
-                .font(.title3)
-                .foregroundColor(.white)
+              if let temperatureText = viewModel.temperatureText {
+                Text(temperatureText)
+                  .font(.title3)
+                  .foregroundColor(.white)
+              }
             }
           }
         }
@@ -119,33 +122,36 @@ struct CityDetailView: View {
     .shadow(radius: 5)
   }
   
+  @ViewBuilder
   private var cloudsView: some View {
-    VStack(alignment: .leading, spacing: 10) {
-      Text(viewModel.cloudsText)
-        .font(.headline)
-        .foregroundColor(.white)
-      HStack {
-        Image(systemName: "cloud.fill")
+    if let cloudinessPercentText = viewModel.cloudinessPercentText {
+      VStack(alignment: .leading, spacing: 10) {
+        Text(viewModel.cloudsText)
+          .font(.headline)
           .foregroundColor(.white)
-          .font(.system(size: 40))
-        VStack(alignment: .leading) {
-          Text(viewModel.cloudinessText)
-            .foregroundColor(.white.opacity(0.8))
-          Text(viewModel.cloudinessPercentText)
-            .font(.title2)
-            .fontWeight(.bold)
+        HStack {
+          Image(systemName: "cloud.fill")
             .foregroundColor(.white)
+            .font(.system(size: 40))
+          VStack(alignment: .leading) {
+            Text(viewModel.cloudinessText)
+              .foregroundColor(.white.opacity(0.8))
+            Text(cloudinessPercentText)
+              .font(.title2)
+              .fontWeight(.bold)
+              .foregroundColor(.white)
+          }
         }
       }
+      .padding()
+      .background(
+        LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]),
+                       startPoint: .topLeading,
+                       endPoint: .bottomTrailing)
+      )
+      .cornerRadius(15)
+      .shadow(radius: 5)
     }
-    .padding()
-    .background(
-      LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]),
-                     startPoint: .topLeading,
-                     endPoint: .bottomTrailing)
-    )
-    .cornerRadius(15)
-    .shadow(radius: 5)
   }
   
   private var systemInfoView: some View {
