@@ -9,7 +9,11 @@ import SwiftUI
 import CWModels
 
 struct SearchView: View {
-  @StateObject private var viewModel = SearchViewViewModel()
+  @StateObject private var viewModel: SearchViewViewModel
+
+  init(viewModel: SearchViewViewModel = SearchViewViewModel()) {
+    _viewModel = StateObject(wrappedValue: viewModel)
+  }
   
   var body: some View {
     NavigationStack {

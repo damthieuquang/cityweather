@@ -9,20 +9,27 @@ import Foundation
 import CWServices
 import CWModels
 
+protocol CitySearching {
+  func getCityByName(cityName: String,
+                     completion: @escaping (_ city: City?, _ error: String?) -> Void)
+}
+
+extension ServiceManager: CitySearching {}
+
 final class SearchViewViewModel: ObservableObject {
-  private var serviceManager = ServiceManager.shared
+  private let citySearcher: CitySearching
   @Published var loadingState: LoadingState = .none
   @Published var history: [City] = []
-  
-  init() {
-    
+
+  init(citySearcher: CitySearching = ServiceManager.shared) {
+    self.citySearcher = citySearcher
   }
-  
+
   func getCityByName(cityName: String) {
     DispatchQueue.main.async {
       self.loadingState = .loading
     }
-    serviceManager.getCityByName(cityName: cityName) { [weak self] city, error in
+    citySearcher.getCityByName(cityName: cityName) { [weak self] city, error in
       DispatchQueue.main.async {
         if let error = error {
           print("Error: \(error)")
