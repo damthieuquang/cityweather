@@ -8,7 +8,7 @@
 import Foundation
 import CWModels
 
-enum ServiceResponse: String {
+enum ServiceResponse: String, Error {
   case success
   case authenticationError = "Authentication required."
   case badRequest = "Bad request."
